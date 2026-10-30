@@ -17,9 +17,7 @@ export default function StepFormComponent() {
 			<div className='min-w-0 flex-1'>
 				<div>
 					<h1 className='mt-20 text-5xl font-bold'>Step Form</h1>
-					<p className='text-muted-foreground mt-4 block text-xl'>
-						Um provider de formulário com animação passo-a-passo
-					</p>
+					<p className='text-muted-foreground mt-4 block text-xl'>Um provider de formulário com animação passo-a-passo</p>
 				</div>
 
 				<section id='preview' className='my-8 scroll-mt-24'>

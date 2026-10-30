@@ -13,7 +13,7 @@ export const LampLight = () => {
 				style={{
 					backgroundImage: `conic-gradient(from 70deg at center top, #06b6d4, transparent, transparent)`,
 				}}
-				className='absolute bottom-0 right-full h-56 w-[30rem] opacity-60 blur-2xl'
+				className='absolute right-full bottom-0 h-56 w-[30rem] opacity-60 blur-2xl'
 			/>
 
 			<motion.div

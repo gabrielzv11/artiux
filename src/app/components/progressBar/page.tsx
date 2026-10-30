@@ -79,7 +79,11 @@ import { ProgressBar } from '@/artiux/components/progressBar';
 				<section id='code' className='my-8 scroll-mt-24'>
 					<h3 className='text-2xl font-bold'>Instalação:</h3>
 					<div className='mt-4 place-content-start'>
-						<CopyCode installs='yarn add class-variance-authority' code={componentCode} fileName='artiux/components/progressBar/index.tsx' />
+						<CopyCode
+							installs='yarn add class-variance-authority'
+							code={componentCode}
+							fileName='artiux/components/progressBar/index.tsx'
+						/>
 					</div>
 				</section>
 			</div>

@@ -76,7 +76,7 @@ function DrawerContent({ className, children, ...props }: React.ComponentProps<t
 				{handle && <DrawerHandle />}
 
 				{/* A MUDANÇA ESTÁ AQUI: overflow-y-auto e flex-1 */}
-				<div data-slot='drawer-scroll' className='w-full max-w-prose flex-1 overflow-y-auto overflow-x-hidden px-2'>
+				<div data-slot='drawer-scroll' className='w-full max-w-prose flex-1 overflow-x-hidden overflow-y-auto px-2'>
 					{children}
 				</div>
 			</DrawerPrimitive.Content>

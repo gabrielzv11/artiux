@@ -33,7 +33,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({ customClass, ...res
 	<div
 		ref={ref}
 		{...rest}
-		className={`shadow-retro absolute left-1/2 top-1/2 border-2 border-black bg-[#e6ccb2] [backface-visibility:hidden] [transform-style:preserve-3d] [will-change:transform] ${customClass ?? ''} ${rest.className ?? ''}`.trim()}
+		className={`shadow-retro absolute top-1/2 left-1/2 border-2 border-black bg-[#e6ccb2] [will-change:transform] [backface-visibility:hidden] [transform-style:preserve-3d] ${customClass ?? ''} ${rest.className ?? ''}`.trim()}
 	/>
 ));
 Card.displayName = 'Card';
@@ -98,10 +98,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
 				};
 
 	const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
-	const refs = useMemo<CardRef[]>(
-		() => childArr.map(() => React.createRef<HTMLDivElement>()),
-		[childArr.length]
-	);
+	const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
 	const order = useRef<number[]>(Array.from({ length: childArr.length }, (_, i) => i));
 
@@ -111,9 +108,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
 	useEffect(() => {
 		const total = refs.length;
-		refs.forEach((r, i) =>
-			placeNow(r.current!, makeSlot(i, cardDistance, verticalDistance, total), skewAmount)
-		);
+		refs.forEach((r, i) => placeNow(r.current!, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
 
 		const swap = () => {
 			if (order.current.length < 2) return;
@@ -213,7 +208,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
 	return (
 		<div
 			ref={container}
-			className='perspective-[900px] absolute bottom-0 right-0 origin-bottom-right translate-x-[5%] translate-y-[20%] transform overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]'
+			className='absolute right-0 bottom-0 origin-bottom-right translate-x-[5%] translate-y-[20%] transform overflow-visible perspective-[900px] max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]'
 			style={{ width, height }}
 		>
 			{rendered}

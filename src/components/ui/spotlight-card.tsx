@@ -16,11 +16,7 @@ interface SpotlightCardProps extends React.PropsWithChildren {
 	spotlightColor?: `rgba(${number}, ${number}, ${number}, ${number})`;
 }
 
-const SpotlightCard: React.FC<SpotlightCardProps> = ({
-	children,
-	className = '',
-	spotlightColor = 'rgba(255, 255, 255, 0.25)',
-}) => {
+const SpotlightCard: React.FC<SpotlightCardProps> = ({ children, className = '', spotlightColor = 'rgba(255, 255, 255, 0.25)' }) => {
 	const divRef = useRef<HTMLDivElement>(null);
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
@@ -59,10 +55,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 			onBlur={handleBlur}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			className={cn(
-				`relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 p-8`,
-				className
-			)}
+			className={cn(`relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 p-8`, className)}
 		>
 			<div
 				className='pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out'
@@ -89,8 +82,7 @@ export const CardsGroup = () => {
 				<Image src={next} alt='logo' width={60} className='space-y-4 invert' />
 			</h1>
 			<p className='text-sm'>
-				Componentes feitos pensando nas versões mais recentes do Next.js, mas que também funcionam em projetos
-				React
+				Componentes feitos pensando nas versões mais recentes do Next.js, mas que também funcionam em projetos React
 			</p>
 		</SpotlightCard>
 		<SpotlightCard className='space-y-4 rounded-l-none rounded-r-[48px] bg-violet-900/20'>

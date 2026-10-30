@@ -54,7 +54,11 @@ export default function CircleTransition() {
 					<h3 className='text-2xl font-bold'>Instalação:</h3>
 					<div className='flex flex-wrap'>
 						<div className='mt-4 place-content-start'>
-							<CopyCode installs='yarn add motion clsx tailwind-merge' code={pageAnimationCode} fileName='artiux/components/circleTransition/index.tsx' />
+							<CopyCode
+								installs='yarn add motion clsx tailwind-merge'
+								code={pageAnimationCode}
+								fileName='artiux/components/circleTransition/index.tsx'
+							/>
 						</div>
 						<div className='mt-4 place-content-start'>
 							<CopyCode installs='yarn add next-view-transitions-gabriel-azv' code={transitionWrapper} />

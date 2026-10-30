@@ -20,14 +20,12 @@ export default function ToLeft() {
 			<div className='min-w-0 flex-1'>
 				<div>
 					<h1 className='mt-20 text-5xl font-bold'>Animação de página à esquerda</h1>
-					<p className='text-muted-foreground mt-2 block text-xl'>
-						Uma animação de transição imersiva de uma página para outra
-					</p>
+					<p className='text-muted-foreground mt-2 block text-xl'>Uma animação de transição imersiva de uma página para outra</p>
 
 					<p className='mt-8'>
-						Animações de transições no Next ainda são um tópico delicado nas versões mais recentes. Apesar do
-						next-view-transitions ser uma mão na roda, para as versões do Next 15, foi necessário fazer um fork
-						alternativo para consertar um bug de build que provavelmente vão consertar nas próximas versões.
+						Animações de transições no Next ainda são um tópico delicado nas versões mais recentes. Apesar do next-view-transitions ser uma
+						mão na roda, para as versões do Next 15, foi necessário fazer um fork alternativo para consertar um bug de build que
+						provavelmente vão consertar nas próximas versões.
 					</p>
 
 					<p>

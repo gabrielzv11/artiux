@@ -37,5 +37,14 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'children'>, Va
 export function Icon({ icon, size = 'md', strokeWidth, className, ref, ...props }: IconProps) {
 	const fontSize = sizeMap[size ?? 'md'];
 
-	return <DynamicIcon {...props} ref={ref} name={icon} size={fontSize} strokeWidth={strokeWidth} className={cn(iconVariants({ size }), className)} />;
+	return (
+		<DynamicIcon
+			{...props}
+			ref={ref}
+			name={icon}
+			size={fontSize}
+			strokeWidth={strokeWidth}
+			className={cn(iconVariants({ size }), className)}
+		/>
+	);
 }

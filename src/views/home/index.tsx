@@ -54,7 +54,7 @@ export default function HomePage() {
 		<Link href={href} asChild>
 			<IconButton
 				icon='arrow-up-right'
-				className='absolute! right-0 top-0 z-10 p-4'
+				className='absolute! top-0 right-0 z-10 p-4'
 				variant='ghost'
 				size='sm'
 				aria-label='Ver componente'
@@ -107,9 +107,9 @@ export default function HomePage() {
 				{/* end - Ignore section */}
 
 				<div ref={sectionRef} className='relative'>
-					<div className='absolute left-0 right-0 px-10'>
+					<div className='absolute right-0 left-0 px-10'>
 						<Grainient
-							className='absolute !bottom-0 !left-0 !right-0 !top-20 !h-[120vh] rounded-[48] md:!h-[150vh]'
+							className='absolute !top-20 !right-0 !bottom-0 !left-0 !h-[120vh] rounded-[48] md:!h-[150vh]'
 							color1='#3e193e'
 							color2='#fefefe'
 							color3='#47484d'

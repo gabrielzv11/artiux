@@ -41,7 +41,7 @@ export default function Dialog({ closeButton, open, onClose, children, ...props 
 						className='bg-card text-card-foreground border-border relative w-full max-w-lg rounded-lg border p-4 shadow-2xl'
 					>
 						{closeButton && (
-							<div className='text-foreground absolute right-4 top-4 cursor-pointer rounded-full p-1 transition-colors'>
+							<div className='text-foreground absolute top-4 right-4 cursor-pointer rounded-full p-1 transition-colors'>
 								<X size={16} onClick={onClose} />
 							</div>
 						)}
@@ -57,7 +57,7 @@ export default function Dialog({ closeButton, open, onClose, children, ...props 
 const Title = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
-			<h3 className='text-lg font-semibold leading-none tracking-tight'>{children}</h3>
+			<h3 className='text-lg leading-none font-semibold tracking-tight'>{children}</h3>
 		</>
 	);
 };

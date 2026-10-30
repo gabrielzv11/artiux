@@ -61,8 +61,8 @@ export default function IconsComponent() {
 						<a href='https://lucide.dev/icons' target='_blank' rel='noreferrer' className='text-primary underline'>
 							lucide
 						</a>
-						. O nome do ícone (ex: <code>house</code>, <code>chevron-right</code>) carrega só o SVG usado, sob demanda —
-						nenhum ícone não utilizado entra no bundle.
+						. O nome do ícone (ex: <code>house</code>, <code>chevron-right</code>) carrega só o SVG usado, sob demanda — nenhum ícone não
+						utilizado entra no bundle.
 					</p>
 				</div>
 

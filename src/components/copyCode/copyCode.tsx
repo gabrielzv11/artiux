@@ -85,7 +85,7 @@ export default function CopyCode({ installs = previewInstalls, code, fileName, .
 				</div>
 
 				<div className='flex items-center justify-between gap-2 px-4 py-3'>
-					<pre className='text-muted-foreground overflow-x-auto whitespace-pre-wrap break-words text-start text-xs'>{commands[pm]}</pre>
+					<pre className='text-muted-foreground overflow-x-auto text-start text-xs break-words whitespace-pre-wrap'>{commands[pm]}</pre>
 					<CodeButton code={commands[pm]} className='shrink-0' />
 				</div>
 			</div>
@@ -107,7 +107,7 @@ export default function CopyCode({ installs = previewInstalls, code, fileName, .
 						<div className='flex shrink-0 items-center gap-3'>
 							<button
 								onClick={() => setExpanded((prev) => !prev)}
-								className='text-muted-foreground flex items-center gap-1 text-xs outline-none transition-colors hover:text-white'
+								className='text-muted-foreground flex items-center gap-1 text-xs transition-colors outline-none hover:text-white'
 							>
 								{expanded ? 'Recolher' : 'Expandir'}
 								<Icon icon='chevron-down' className={cn('size-3.5 transition-transform duration-300', expanded && 'rotate-180')} />

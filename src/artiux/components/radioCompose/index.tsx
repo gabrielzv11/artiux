@@ -46,7 +46,7 @@ function RadioComposeItem({
 				if (!event.defaultPrevented && !itemDisabled) context.setValue(value);
 			}}
 			className={cn(
-				'border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 aria-invalid:border-destructive group flex w-full flex-col justify-center gap-2 rounded-3xl border-2 p-4 outline-none transition-[color,box-shadow,border-color] duration-200 ease-in-out focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+				'border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 aria-invalid:border-destructive group flex w-full flex-col justify-center gap-2 rounded-3xl border-2 p-4 transition-[color,box-shadow,border-color] duration-200 ease-in-out outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
 				'data-[state=checked]:border-primary',
 				className
 			)}
@@ -66,7 +66,7 @@ function RadioComposeItem({
 								initial={{ scale: 0, opacity: 0 }}
 								animate={{ scale: 1, opacity: 1 }}
 								transition={{ duration: 0.2, ease: 'easeInOut', type: 'spring', stiffness: 300, damping: 20 }}
-								className='bg-primary absolute left-1/2 top-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full'
+								className='bg-primary absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full'
 							/>
 						)}
 					</span>

@@ -81,7 +81,12 @@ import { Button } from '@/artiux/components/button';
 						<ControlDropdown label='Color' value={color} options={colors} onChange={setColor} />
 						<ControlDropdown label='Size' value={size} options={sizes} onChange={setSize} />
 						<ControlDropdown label='Ornament' value={ornament} options={ornaments} onChange={setOrnament} />
-						<ControlDropdown label='Ornament position' value={ornamentPosition} options={ornamentPositions} onChange={setOrnamentPosition} />
+						<ControlDropdown
+							label='Ornament position'
+							value={ornamentPosition}
+							options={ornamentPositions}
+							onChange={setOrnamentPosition}
+						/>
 						<ControlSwitch label='Loading' checked={loading} onChange={setLoading} />
 						<ControlSwitch label='Disabled' checked={disabled} onChange={setDisabled} />
 					</Customize>

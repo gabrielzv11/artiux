@@ -265,7 +265,7 @@ function SelectDesktop<TFieldValues extends FieldValues>({
 											value={String(option.value)}
 											className={cn(
 												textVariants({ typography }),
-												'text-primary data-[highlighted]:bg-accent relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50'
+												'text-primary data-[highlighted]:bg-accent relative flex cursor-pointer items-center rounded-lg px-3 py-2 outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50'
 											)}
 										>
 											<SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>

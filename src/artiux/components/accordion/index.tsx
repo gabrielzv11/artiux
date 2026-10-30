@@ -39,7 +39,14 @@ function Accordion({ type = 'multiple', defaultValue, value, onValueChange, clas
 
 	const toggle = React.useCallback(
 		(val: string) => {
-			const next = type === 'single' ? (openValues.includes(val) ? [] : [val]) : openValues.includes(val) ? openValues.filter((v) => v !== val) : [...openValues, val];
+			const next =
+				type === 'single'
+					? openValues.includes(val)
+						? []
+						: [val]
+					: openValues.includes(val)
+						? openValues.filter((v) => v !== val)
+						: [...openValues, val];
 
 			if (value === undefined) setInternal(next);
 			onValueChange?.(type === 'single' ? (next[0] ?? '') : next);

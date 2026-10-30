@@ -65,6 +65,7 @@ src/
 ## Where Things Live
 
 **Adding/editing a library component:**
+
 - Component source: `src/artiux/components/<name>/index.tsx`
 - Doc/demo page: `src/app/components/<name>/page.tsx` (+ `layout.tsx` for `<title>` metadata)
 - Config: no per-component config files; styling inline via Tailwind + `cva`.

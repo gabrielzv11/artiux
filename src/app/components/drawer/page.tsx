@@ -76,48 +76,48 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 
 				<section id='preview' className='my-8 scroll-mt-24'>
 					<PreviewCode code={dynamicPreviewCode}>
-					<Drawer direction={direction} fullScreen={fullScreen} dismissible={dismissible}>
-						<DrawerTrigger asChild>
-							<Button size='sm'>Abrir Drawer</Button>
-						</DrawerTrigger>
-						<DrawerContent>
-							<DrawerHeader>
-								<DrawerTitle>Você tem certeza?</DrawerTitle>
-								<DrawerDescription>Essa ação não pode ser desfeita.</DrawerDescription>
-							</DrawerHeader>
-							<div>
-								<p className='text-base'>Tem certeza que deseja continuar? Essa ação não pode ser desfeita.</p>
-							</div>
-							<DrawerFooter>
-								<Button>Confirmar</Button>
-								<DrawerClose>
-									<Button variant='ghost'>Cancelar</Button>
-								</DrawerClose>
-							</DrawerFooter>
-						</DrawerContent>
-					</Drawer>
+						<Drawer direction={direction} fullScreen={fullScreen} dismissible={dismissible}>
+							<DrawerTrigger asChild>
+								<Button size='sm'>Abrir Drawer</Button>
+							</DrawerTrigger>
+							<DrawerContent>
+								<DrawerHeader>
+									<DrawerTitle>Você tem certeza?</DrawerTitle>
+									<DrawerDescription>Essa ação não pode ser desfeita.</DrawerDescription>
+								</DrawerHeader>
+								<div>
+									<p className='text-base'>Tem certeza que deseja continuar? Essa ação não pode ser desfeita.</p>
+								</div>
+								<DrawerFooter>
+									<Button>Confirmar</Button>
+									<DrawerClose>
+										<Button variant='ghost'>Cancelar</Button>
+									</DrawerClose>
+								</DrawerFooter>
+							</DrawerContent>
+						</Drawer>
 
-					<Drawer fullScreen>
-						<DrawerTrigger asChild>
-							<Button size='sm' variant='secondary'>
-								Abrir em tela cheia
-							</Button>
-						</DrawerTrigger>
-						<DrawerContent>
-							<DrawerHeader>
-								<DrawerTitle>Drawer em tela cheia</DrawerTitle>
-								<DrawerDescription>Use a prop `fullScreen` para ocupar toda a viewport.</DrawerDescription>
-							</DrawerHeader>
-							<div>
-								<p className='text-base'>Conteúdo do drawer em tela cheia.</p>
-							</div>
-							<DrawerFooter>
-								<DrawerClose>
-									<Button variant='ghost'>Fechar</Button>
-								</DrawerClose>
-							</DrawerFooter>
-						</DrawerContent>
-					</Drawer>
+						<Drawer fullScreen>
+							<DrawerTrigger asChild>
+								<Button size='sm' variant='secondary'>
+									Abrir em tela cheia
+								</Button>
+							</DrawerTrigger>
+							<DrawerContent>
+								<DrawerHeader>
+									<DrawerTitle>Drawer em tela cheia</DrawerTitle>
+									<DrawerDescription>Use a prop `fullScreen` para ocupar toda a viewport.</DrawerDescription>
+								</DrawerHeader>
+								<div>
+									<p className='text-base'>Conteúdo do drawer em tela cheia.</p>
+								</div>
+								<DrawerFooter>
+									<DrawerClose>
+										<Button variant='ghost'>Fechar</Button>
+									</DrawerClose>
+								</DrawerFooter>
+							</DrawerContent>
+						</Drawer>
 					</PreviewCode>
 				</section>
 

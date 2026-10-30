@@ -39,6 +39,7 @@ Three parallel, differently-purposed "components" directories:
 **Location:** `src/artiux/components/*`
 **Purpose:** Expose sub-parts of a component (e.g. Card.Header, Dialog.Title) for flexible composition.
 **Implementation:** Inconsistent across the library —
+
 - Flat named-export style (Card, Select, Drawer): `export function CardHeader()`, `export function CardTitle()`, composed manually by the consumer.
 - Static-property style (Dialog only): default export with subcomponents attached (`Dialog.Header = Header`, etc. — `src/artiux/components/dialog/dialog.tsx:85-88`).
 

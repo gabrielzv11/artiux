@@ -12,7 +12,7 @@ export function PropsTable({ rows }: { rows: PropRow[] }) {
 			<div className='border-border mt-4 overflow-auto rounded-xl border'>
 				<table className='w-full text-left text-sm'>
 					<thead>
-						<tr className='border-border text-muted-foreground border-b text-xs uppercase tracking-wide'>
+						<tr className='border-border text-muted-foreground border-b text-xs tracking-wide uppercase'>
 							<th className='px-4 py-3 font-medium'>Property</th>
 							<th className='px-4 py-3 font-medium'>Type</th>
 							<th className='px-4 py-3 font-medium'>Default</th>

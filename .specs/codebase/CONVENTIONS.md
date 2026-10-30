@@ -3,6 +3,7 @@
 ## Naming Conventions
 
 **Files:**
+
 - `src/artiux/components/<name>/` folders: camelCase (`buttonGroup`, `multiSelect`, `rippleContainer`, `checkboxCompose`). Most contain a single `index.tsx`; a minority use `<name>.tsx` instead (e.g. `dialog/dialog.tsx`, `rippleContainer/rippleContainer.tsx`) — **inconsistent**, no single rule enforced.
 - `src/app/components/<name>/` doc-route folders: **mixed** camelCase and kebab-case (`buttonGroup` vs `bubble-button`, `circularProgress` vs `circle-transition`, `ripple-container`, `to-left`, `step-form`).
 
@@ -20,6 +21,7 @@
 ## Type Safety/Documentation
 
 **Approach:**
+
 - `strict: true` in `tsconfig.json` — TypeScript is the primary enforced quality gate (no ESLint config currently present).
 - Props interfaces extend native HTML attribute types, e.g. `ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>` (`src/artiux/components/button/index.tsx:14`).
 - `VariantProps<typeof xVariants>` (from `class-variance-authority`) used to type variant-driven props.
