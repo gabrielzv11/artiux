@@ -1,0 +1,23 @@
+{
+	"trailingComma": "es5",
+	"tabWidth": 2,
+	"useTabs": true,
+	"semi": true,
+	"jsxSingleQuote": true,
+	"singleQuote": true,
+	"printWidth": 140,
+	"endOfLine": "lf",
+	"bracketSpacing": true,
+	"arrowParens": "always",
+	"overrides": [
+		{
+			"files": "*.tsx",
+			"options": {
+				"plugins": ["prettier-plugin-tailwindcss"]
+			}
+		}
+	],
+	"importOrder": ["^[./]"],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+}
