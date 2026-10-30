@@ -31,7 +31,7 @@ export default function StepFormProvider({ forms, actualForm }: FormProviderProp
 			{/* Form que está saindo */}
 			{transitioning && (
 				<div
-					className='absolute left-0 top-0 h-full w-full'
+					className='absolute top-0 left-0 h-full w-full'
 					style={{
 						animation: `${direction === 1 ? 'slideOutLeft' : 'slideOutRight'} 300ms ease-in-out forwards`,
 					}}
@@ -42,58 +42,56 @@ export default function StepFormProvider({ forms, actualForm }: FormProviderProp
 
 			{/* Form que está entrando */}
 			<div
-				className='absolute left-0 top-0 h-full w-full'
+				className='absolute top-0 left-0 h-full w-full'
 				style={{
-					animation: transitioning
-						? `${direction === 1 ? 'slideInRight' : 'slideInLeft'} 300ms ease-in-out forwards`
-						: undefined,
+					animation: transitioning ? `${direction === 1 ? 'slideInRight' : 'slideInLeft'} 300ms ease-in-out forwards` : undefined,
 				}}
 			>
 				{forms[transitioning ? actualForm : prevForm]}
 			</div>
 
 			<style jsx global>{`
-        @keyframes slideOutLeft {
-          from {
-            transform: translateX(0%);
-            opacity: 1;
-          }
-          to {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-        }
-        @keyframes slideOutRight {
-          from {
-            transform: translateX(0%);
-            opacity: 1;
-          }
-          to {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-        }
-        @keyframes slideInRight {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0%);
-            opacity: 1;
-          }
-        }
-        @keyframes slideInLeft {
-          from {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0%);
-            opacity: 1;
-          }
-        }
-      `}</style>
+				@keyframes slideOutLeft {
+					from {
+						transform: translateX(0%);
+						opacity: 1;
+					}
+					to {
+						transform: translateX(-100%);
+						opacity: 0;
+					}
+				}
+				@keyframes slideOutRight {
+					from {
+						transform: translateX(0%);
+						opacity: 1;
+					}
+					to {
+						transform: translateX(100%);
+						opacity: 0;
+					}
+				}
+				@keyframes slideInRight {
+					from {
+						transform: translateX(100%);
+						opacity: 0;
+					}
+					to {
+						transform: translateX(0%);
+						opacity: 1;
+					}
+				}
+				@keyframes slideInLeft {
+					from {
+						transform: translateX(-100%);
+						opacity: 0;
+					}
+					to {
+						transform: translateX(0%);
+						opacity: 1;
+					}
+				}
+			`}</style>
 		</div>
 	);
 }

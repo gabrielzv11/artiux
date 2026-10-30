@@ -3,18 +3,7 @@ import { cva } from 'class-variance-authority';
 import { ComponentPropsWithoutRef, ElementType } from 'react';
 
 export type TextComponent =
-	| 'h1'
-	| 'h2'
-	| 'h3'
-	| 'h4'
-	| 'h5'
-	| 'subtitle-1'
-	| 'subtitle-2'
-	| 'body'
-	| 'description-1'
-	| 'description-2'
-	| 'action'
-	| 'caption';
+	'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'subtitle-1' | 'subtitle-2' | 'body' | 'description-1' | 'description-2' | 'action' | 'caption';
 
 export interface TextProps extends ComponentPropsWithoutRef<'p'> {
 	typography?: TextComponent;

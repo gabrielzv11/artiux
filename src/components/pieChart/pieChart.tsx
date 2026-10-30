@@ -21,22 +21,9 @@ export default function PieChart({ ...props }: PieChartProps) {
 				<div className='drop-shadow-[1px_1px_0_#333] filter'>
 					<ResponsiveContainer width='100%' height={220}>
 						<RechartsPieChart>
-							<Pie
-								data={dataPie}
-								dataKey='value'
-								outerRadius={70}
-								innerRadius={30}
-								stroke='#000'
-								strokeWidth={2}
-								label
-							>
+							<Pie data={dataPie} dataKey='value' outerRadius={70} innerRadius={30} stroke='#000' strokeWidth={2} label>
 								{dataPie.map((entry, index) => (
-									<Cell
-										key={`cell-${index}`}
-										fill={pastelColors[index % pastelColors.length]}
-										stroke='#000'
-										strokeWidth={2}
-									/>
+									<Cell key={`cell-${index}`} fill={pastelColors[index % pastelColors.length]} stroke='#000' strokeWidth={2} />
 								))}
 							</Pie>
 							<Tooltip

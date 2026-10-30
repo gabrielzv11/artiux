@@ -33,9 +33,7 @@ export default function Three() {
 			link.setAttribute('download', 'canvas.png');
 			link.setAttribute(
 				'href',
-				(document.querySelector('canvas') as HTMLCanvasElement)
-					.toDataURL('image/png')
-					.replace('image/png', 'image/octet-stream')
+				(document.querySelector('canvas') as HTMLCanvasElement).toDataURL('image/png').replace('image/png', 'image/octet-stream')
 			);
 			link.click();
 		}),
@@ -59,13 +57,7 @@ export default function Three() {
 						<Lightformer intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[10, 2, 1]} />
 						<Lightformer intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={[10, 2, 1]} />
 						<Lightformer intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[20, 2, 1]} />
-						<Lightformer
-							type='ring'
-							intensity={2}
-							rotation-y={Math.PI / 2}
-							position={[-0.1, -1, -5]}
-							scale={10}
-						/>
+						<Lightformer type='ring' intensity={2} rotation-y={Math.PI / 2} position={[-0.1, -1, -5]} scale={10} />
 					</group>
 				</Environment>
 			</Canvas>
@@ -74,10 +66,7 @@ export default function Three() {
 }
 
 function Text({ children, config, font = '/inter_medium_font.json', ...props }: any) {
-	const texture = useLoader(
-		RGBELoader,
-		'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr'
-	);
+	const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr');
 	return (
 		<>
 			<group>

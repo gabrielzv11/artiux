@@ -469,7 +469,7 @@ function MultiSelectDesktop({
 													disabled={!!isDisabled}
 													onClick={() => !isDisabled && handleToggle(option.value)}
 													className={cn(
-														'text-primary hover:bg-accent relative flex w-full cursor-pointer select-none items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm outline-none transition-colors duration-150 ease-out active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
+														'text-primary hover:bg-accent relative flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm transition-colors duration-150 ease-out outline-none select-none active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
 														isSelected && 'bg-primary text-primary-foreground hover:bg-primary/95'
 													)}
 												>

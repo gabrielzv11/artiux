@@ -38,23 +38,14 @@ const rainbowButtonVariants = cva(
 	}
 );
 
-interface RainbowButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-		VariantProps<typeof rainbowButtonVariants> {
+interface RainbowButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof rainbowButtonVariants> {
 	asChild?: boolean;
 }
 
 const RainbowButton = React.forwardRef<HTMLButtonElement, RainbowButtonProps>(
 	({ className, variant, size, asChild = false, ...props }, ref) => {
 		const Comp = asChild ? Slot : 'button';
-		return (
-			<Comp
-				data-slot='button'
-				className={cn(rainbowButtonVariants({ variant, size, className }))}
-				ref={ref}
-				{...props}
-			/>
-		);
+		return <Comp data-slot='button' className={cn(rainbowButtonVariants({ variant, size, className }))} ref={ref} {...props} />;
 	}
 );
 

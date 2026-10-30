@@ -21,14 +21,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	svgDelay?: number;
 }
 
-export default function BubbleButton({
-	loading,
-	svgDelay = 0.05,
-	svgDuration = 2,
-	children,
-	bubbleIcon,
-	...props
-}: ButtonProps) {
+export default function BubbleButton({ loading, svgDelay = 0.05, svgDuration = 2, children, bubbleIcon, ...props }: ButtonProps) {
 	const [bubbles, setBubbles] = useState<Bubble[]>([]);
 	const [isCoolingDown, setIsCoolingDown] = useState(false);
 

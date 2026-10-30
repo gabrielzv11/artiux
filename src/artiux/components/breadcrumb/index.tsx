@@ -68,13 +68,7 @@ export interface BreadcrumbProps {
 	speed?: number;
 }
 
-export function Breadcrumb({
-	pathname: pathnameProp,
-	onNavigate,
-	variant = 'ghost',
-	animation = 'bounce',
-	speed = 1,
-}: BreadcrumbProps) {
+export function Breadcrumb({ pathname: pathnameProp, onNavigate, variant = 'ghost', animation = 'bounce', speed = 1 }: BreadcrumbProps) {
 	const realPathname = usePathname();
 	const pathname = pathnameProp ?? realPathname;
 	const segments = pathname.split('/').filter(Boolean);

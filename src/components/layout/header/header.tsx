@@ -63,7 +63,7 @@ const NavMobile = () => {
 									</Accordion.Trigger>
 
 									<Accordion.Content>
-										<ul className='flex flex-col gap-3 pl-4 pt-3'>
+										<ul className='flex flex-col gap-3 pt-3 pl-4'>
 											<li>
 												<Link href='/components' onClick={close} className='font-medium'>
 													Todos

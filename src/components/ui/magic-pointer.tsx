@@ -63,7 +63,7 @@ export function Pointer({ className, style, children, ...props }: PointerProps):
 			<AnimatePresence>
 				{isActive && (
 					<motion.div
-						className='transform-[translate(-50%,-50%)] pointer-events-none fixed z-50'
+						className='pointer-events-none fixed z-50 transform-[translate(-50%,-50%)]'
 						style={{
 							top: y,
 							left: x,

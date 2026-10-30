@@ -36,16 +36,11 @@ interface PixelTrailProps {
 
 const GooeyFilter: React.FC<GooeyFilterProps> = ({ id = 'goo-filter', strength = 10 }) => {
 	return (
-		<svg className='z-1 absolute overflow-hidden'>
+		<svg className='absolute z-1 overflow-hidden'>
 			<defs>
 				<filter id={id}>
 					<feGaussianBlur in='SourceGraphic' stdDeviation={strength} result='blur' />
-					<feColorMatrix
-						in='blur'
-						type='matrix'
-						values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9'
-						result='goo'
-					/>
+					<feColorMatrix in='blur' type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9' result='goo' />
 					<feComposite in='SourceGraphic' in2='goo' operator='atop' />
 				</filter>
 			</defs>
@@ -133,15 +128,7 @@ declare global {
 	}
 }
 
-function Scene({
-	gridSize,
-	trailSize,
-	maxAge,
-	interpolate,
-	easingFunction,
-	pixelColor,
-	dotRadius,
-}: SceneProps) {
+function Scene({ gridSize, trailSize, maxAge, interpolate, easingFunction, pixelColor, dotRadius }: SceneProps) {
 	const size = useThree((s) => s.size);
 	const viewport = useThree((s) => s.viewport);
 

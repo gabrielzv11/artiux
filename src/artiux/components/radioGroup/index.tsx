@@ -17,7 +17,7 @@ function LiquidBlob({ x, y }: { x: MotionValue<number>; y: MotionValue<number> }
 	const transform = useMotionTemplate`translate(-50%, -50%) rotate(${rotate}deg) scaleX(${stretch}) scaleY(${squish}) rotate(${negRotate}deg)`;
 
 	return (
-		<motion.div className='absolute left-0 top-0' style={{ x, y }}>
+		<motion.div className='absolute top-0 left-0' style={{ x, y }}>
 			<motion.div className='bg-primary size-5 rounded-full' style={{ transform }} />
 		</motion.div>
 	);
@@ -238,7 +238,7 @@ function RadioGroupItem({ className, value, disabled, onClick, ...props }: Radio
 				if (!event.defaultPrevented && !itemDisabled) context.setValue(value);
 			}}
 			className={cn(
-				'border-input text-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 shadow-xs aspect-square size-6 shrink-0 rounded-full border outline-none transition-[color,box-shadow,border-color] duration-200 ease-in-out focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+				'border-input text-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 aspect-square size-6 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow,border-color] duration-200 ease-in-out outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
 				'data-[state=checked]:border-primary',
 				className
 			)}

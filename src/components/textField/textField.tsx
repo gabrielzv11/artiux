@@ -33,26 +33,23 @@ export default function TextField({
 	ornamentPosition,
 	...props
 }: TextFieldProps) {
-	const variants = cva(
-		`w-full bg-transparent outline-none transition-all disabled:cursor-not-allowed disabled:opacity-50`,
-		{
-			variants: {
-				variant: {
-					outlined: 'border-b-2 border-slate-200 outline-none focus-visible:border-b-slate-300 ',
-					contained:
-						'focus-visible:outline-accent [&:hover:not(:focus)]:bg-accent/5 outline-input text-textField-foreground hover:border-accent rounded-lg',
-				},
-				size: {
-					sm: 'px-1 py-1',
-					lg: 'px-3 py-3',
-				},
+	const variants = cva(`w-full bg-transparent outline-none transition-all disabled:cursor-not-allowed disabled:opacity-50`, {
+		variants: {
+			variant: {
+				outlined: 'border-b-2 border-slate-200 outline-none focus-visible:border-b-slate-300 ',
+				contained:
+					'focus-visible:outline-accent [&:hover:not(:focus)]:bg-accent/5 outline-input text-textField-foreground hover:border-accent rounded-lg',
 			},
-			defaultVariants: {
-				variant: 'contained',
-				size: 'lg',
+			size: {
+				sm: 'px-1 py-1',
+				lg: 'px-3 py-3',
 			},
-		}
-	);
+		},
+		defaultVariants: {
+			variant: 'contained',
+			size: 'lg',
+		},
+	});
 	const inputElement = (
 		<input
 			className={cn(variants({ variant, size }), ornamentPosition === 'left' ? 'pl-8' : 'pr-8', className)}
@@ -75,13 +72,7 @@ export default function TextField({
 				inputElement
 			)}
 			{Ornament && (
-				<Ornament
-					className={twMerge(
-						'absolute top-1/2 -translate-y-1/2',
-						ornamentPosition === 'left' ? 'left-2' : 'right-4'
-					)}
-					size={18}
-				/>
+				<Ornament className={twMerge('absolute top-1/2 -translate-y-1/2', ornamentPosition === 'left' ? 'left-2' : 'right-4')} size={18} />
 			)}
 		</div>
 	);

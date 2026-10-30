@@ -46,7 +46,11 @@ import { ButtonGroup } from '@/artiux/components/buttonGroup';
 
 				<section id='preview' className='my-8 scroll-mt-24'>
 					<PreviewCode code={previewCode}>
-						<ButtonGroup orientation={orientation} showSeparator={showSeparator} className={orientation === 'vertical' ? 'w-max' : undefined}>
+						<ButtonGroup
+							orientation={orientation}
+							showSeparator={showSeparator}
+							className={orientation === 'vertical' ? 'w-max' : undefined}
+						>
 							<Button variant='primary'>Topo</Button>
 							<Button variant='primary'>Meio</Button>
 							<Button variant='primary'>Baixo</Button>

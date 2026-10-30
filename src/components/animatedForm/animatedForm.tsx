@@ -55,11 +55,7 @@ export default function AnimatedForm({ ...props }: AnimatedFormProps) {
 		}
 	};
 
-	const formComponents = [
-		<EmailStep key='email' />,
-		<NameStep key='name' />,
-		<PasswordStep key='password' />,
-	];
+	const formComponents = [<EmailStep key='email' />, <NameStep key='name' />, <PasswordStep key='password' />];
 
 	const onSubmit = async () => {
 		if (step < steps.length - 1) {

@@ -23,7 +23,7 @@ function CheckboxComposeItem({ title, description, actionName, image, customNode
 			<CheckboxPrimitive.Root
 				data-slot='checkbox'
 				className={cn(
-					'border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 aria-invalid:border-destructive group relative flex w-full flex-col justify-center gap-2 rounded-3xl border-2 p-4 outline-none transition-[color,box-shadow,border-color] duration-200 ease-in-out focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+					'border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 aria-invalid:border-destructive group relative flex w-full flex-col justify-center gap-2 rounded-3xl border-2 p-4 transition-[color,box-shadow,border-color] duration-200 ease-in-out outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
 					'data-[state=checked]:border-primary',
 					props.className
 				)}

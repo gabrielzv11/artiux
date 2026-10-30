@@ -85,7 +85,9 @@ const options = [
 			<div className='min-w-0 flex-1'>
 				<div>
 					<h1 className='mt-20 text-5xl font-bold'>Multi Select</h1>
-					<p className='text-muted-foreground mt-4 block text-xl'>Um seletor de múltiplas opções em drawer, com busca e limite de seleção</p>
+					<p className='text-muted-foreground mt-4 block text-xl'>
+						Um seletor de múltiplas opções em drawer, com busca e limite de seleção
+					</p>
 				</div>
 
 				<section id='preview' className='my-8 scroll-mt-24'>
