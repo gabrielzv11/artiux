@@ -1,2 +1,6 @@
-overrides:
-  list: link:../../../../AppData/Local/pnpm/global/5/node_modules/list
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+
+ignoredBuiltDependencies:
+  - '@tsparticles/engine'
