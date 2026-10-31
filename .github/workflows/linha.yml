@@ -2,28 +2,31 @@
 # The pipeline code itself is downloaded from the relay on every run (always the deployed version) and checked by sha256.
 # The file name (.github/workflows/linha.yml) is part of the relay's verification; do not rename it.
 name: linha
-run-name: ${{ github.event.action || inputs.phase }} · ${{ github.event.client_payload.ticket || inputs.ticket }}
+# The reconciler finds the last run of a ticket by this title (`linha.<phase> · <TICKET>`); do not change it.
+run-name: ${{ github.event_name == 'schedule' && 'reconcile' || format('{0} · {1}', github.event.action || inputs.phase, github.event.client_payload.ticket || inputs.ticket) }}
 
 on:
   repository_dispatch:
     types: [linha.analysis, linha.development, linha.review]
+  schedule:
+    - cron: '17 * * * *' # reconciler: re-dispatches lost webhooks, quota waits and dead runs (minute 0 is the busiest)
   workflow_dispatch:
     inputs:
       phase:
         description: Fase
         type: choice
-        options: [analysis, development, review]
+        options: [analysis, development, review, reconcile]
       ticket:
-        description: 'Chave do ticket (ex.: ART-1)'
-        required: true
+        description: 'Chave do ticket (ex.: ART-1; vazio no reconcile)'
+        required: false
 
 permissions:
   id-token: write # OIDC token for the relay
   contents: read
 
 concurrency:
-  # Development: one at a time per repo (Claude quota). Other phases: one per ticket and phase.
-  group: ${{ (github.event.action == 'linha.development' || inputs.phase == 'development') && 'linha-coder' || format('linha-{0}-{1}', github.event.action || inputs.phase, github.event.client_payload.ticket || inputs.ticket) }}
+  # Development: one at a time per repo (Claude quota). Reconciler: one tick at a time. Other phases: one per ticket and phase.
+  group: ${{ (github.event_name == 'schedule' || inputs.phase == 'reconcile') && 'linha-reconcile' || (github.event.action == 'linha.development' || inputs.phase == 'development') && 'linha-coder' || format('linha-{0}-{1}', github.event.action || inputs.phase, github.event.client_payload.ticket || inputs.ticket) }}
   cancel-in-progress: false
 
 jobs:
