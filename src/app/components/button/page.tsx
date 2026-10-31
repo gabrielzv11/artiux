@@ -18,7 +18,7 @@ const asideItems = [
 
 const variants = ['primary', 'secondary', 'ghost'] as const;
 const colors = ['primary', 'warning', 'destructive', 'success', 'info'] as const;
-const sizes = ['lg', 'sm'] as const;
+const sizes = ['sm', 'md', 'lg'] as const;
 const ornaments = ['none', 'settings', 'heart'] as const;
 const ornamentPositions = ['left', 'right'] as const;
 
@@ -34,7 +34,7 @@ export default function ButtonComponent() {
 	const props = [
 		`variant='${variant}'`,
 		`color='${color}'`,
-		size === 'sm' ? `size='sm'` : null,
+		size !== 'lg' ? `size='${size}'` : null,
 		ornament !== 'none' ? `ornament='${ornament}'` : null,
 		ornament !== 'none' && ornamentPosition === 'right' ? `ornamentPosition='right'` : null,
 		loading ? 'loading' : null,
@@ -121,7 +121,7 @@ const propRows = [
 		default: "'primary'",
 		description: 'Cor semântica aplicada ao botão.',
 	},
-	{ property: 'size', type: "'sm' | 'lg'", default: "'lg'", description: 'Tamanho do botão.' },
+	{ property: 'size', type: "'sm' | 'md' | 'lg'", default: "'lg'", description: 'Tamanho do botão.' },
 	{ property: 'ornament', type: 'IconName', description: 'Ícone exibido junto ao texto.' },
 	{ property: 'ornamentPosition', type: "'left' | 'right'", default: "'left'", description: 'Posição do ícone em relação ao texto.' },
 	{ property: 'loading', type: 'boolean', default: 'false', description: 'Exibe indicador de carregamento e desabilita o botão.' },
@@ -158,7 +158,7 @@ export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTML
 	variant?: 'primary' | 'secondary' | 'ghost';
 	color?: Color;
 	loading?: boolean;
-	size?: 'sm' | 'lg';
+	size?: 'sm' | 'md' | 'lg';
 	ornament?: IconName;
 	ornamentPosition?: 'left' | 'right';
 	typography?: VariantProps<typeof textVariants>['typography'];
@@ -188,6 +188,7 @@ export function Button({
 				},
 				size: {
 					lg: 'px-4 py-3 text-base',
+					md: 'px-4 py-2 text-sm',
 					sm: 'px-3 py-1.5 text-sm w-max',
 				},
 			},

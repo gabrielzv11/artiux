@@ -8,7 +8,7 @@ import CircularProgress from '@/components/circularProgress/circularProgress';
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	variant?: 'contained' | 'text' | 'outlined' | 'icon';
 	loading?: boolean;
-	size?: 'sm' | 'lg';
+	size?: 'sm' | 'md' | 'lg';
 }
 
 export default function Button({ children, variant, size, loading, ...props }: ButtonProps) {
@@ -25,7 +25,8 @@ export default function Button({ children, variant, size, loading, ...props }: B
 					icon: 'bg-background w-max shadow-md',
 				},
 				size: {
-					sm: ' px-3 py-1 ',
+					sm: ' px-3 py-1',
+					md: ' px-4 py-1.5 text-base ',
 					lg: ' px-4 py-2 ',
 				},
 			},
