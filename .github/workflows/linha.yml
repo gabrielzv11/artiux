@@ -34,6 +34,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false # the pipeline pushes with the App token; nothing it runs sees a token in .git/config
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -47,3 +48,10 @@ jobs:
         env:
           INPUT_RELAY: https://linha-produtiva.vercel.app
         run: node "${{ runner.temp }}/linha.mjs"
+      - name: Resultado
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linha-resultado
+          path: ${{ runner.temp }}/linha-resultado.json
+          if-no-files-found: ignore
