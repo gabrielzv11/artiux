@@ -18,6 +18,8 @@ import { useIsMobile } from '@/artiux/hooks/use-mobile';
 type Typography = VariantProps<typeof textVariants>['typography'];
 type SelectSize = 'sm' | 'lg';
 
+const MOBILE_BREAKPOINT = '768';
+
 // ---------------------------------------------------------------------------
 // Estado controlável
 // ---------------------------------------------------------------------------
@@ -60,16 +62,20 @@ const TriggerContext = React.createContext<{ size: SelectSize; ornament?: IconNa
 const DrawerItemsContext = React.createContext<{ buttonsProps?: ButtonProps }>({});
 
 // Coleta os labels dos SelectItem declarados nos children (para exibir o valor selecionado com o conteúdo fechado)
-function collectLabels(children: React.ReactNode, map = new Map<string, React.ReactNode>()) {
-	React.Children.forEach(children, (child) => {
-		if (!React.isValidElement(child)) return;
-		const props = child.props as { value?: string | number; children?: React.ReactNode };
-		if (child.type === SelectItem) {
-			map.set(String(props.value), props.children);
-		} else if (props.children) {
-			collectLabels(props.children, map);
-		}
-	});
+function collectLabels(children: React.ReactNode) {
+	const map = new Map<string, React.ReactNode>();
+	const walk = (nodes: React.ReactNode) => {
+		React.Children.forEach(nodes, (child) => {
+			if (!React.isValidElement(child)) return;
+			const props = child.props as { value?: string | number; children?: React.ReactNode };
+			if (child.type === SelectItem) {
+				map.set(String(props.value), props.children);
+			} else if (props.children) {
+				walk(props.children);
+			}
+		});
+	};
+	walk(children);
 	return map;
 }
 
@@ -97,10 +103,10 @@ export function Select({
 	onOpenChange,
 	typography = 'caption',
 }: SelectProps) {
-	const isMobile = useIsMobile('768');
+	const isMobile = useIsMobile(MOBILE_BREAKPOINT);
 	const [value, setValue] = useControllable<string>(valueProp, defaultValue, onValueChange);
 	const [open, setOpen] = useControllable<boolean>(openProp, defaultOpen, onOpenChange);
-	const labels = collectLabels(children);
+	const labels = React.useMemo(() => collectLabels(children), [children]);
 
 	return (
 		<SelectContext.Provider value={{ value, setValue, open, setOpen, isMobile, typography, labels }}>
