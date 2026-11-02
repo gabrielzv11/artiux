@@ -8,8 +8,8 @@ import { PropsTable } from '@/components/customize/propsTable';
 import PreviewCode from '@/components/previewCode/previewCode';
 
 import { Aside } from '@/artiux/components/aside';
-import { Select } from '@/artiux/components/select';
-import { useForm } from 'react-hook-form';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/artiux/components/select';
+import { Controller, useForm } from 'react-hook-form';
 
 const sizes = ['lg', 'sm'] as const;
 const ornaments = ['none', 'globe', 'search', 'settings'] as const;
@@ -27,12 +27,7 @@ export default function SelectComponent() {
 		},
 	});
 
-	const { control: cityControl } = useForm({
-		defaultValues: {
-			city: '',
-		},
-	});
-
+	const [city, setCity] = useState('');
 	const [size, setSize] = useState<(typeof sizes)[number]>('lg');
 	const [ornament, setOrnament] = useState<(typeof ornaments)[number]>('none');
 	const [showDescription, setShowDescription] = useState(true);
@@ -51,33 +46,47 @@ export default function SelectComponent() {
 		{ label: 'Belo Horizonte', value: 'bh' },
 	];
 
-	const props = [
-		`name='status'`,
-		`options={options}`,
-		size === 'sm' ? `size='sm'` : null,
-		`title='Status'`,
-		showDescription ? `description='Selecione o status'` : null,
-		ornament !== 'none' ? `ornament='${ornament}'` : null,
-	]
+	const triggerProps = [size === 'sm' ? `size='sm'` : null, ornament !== 'none' ? `ornament='${ornament}'` : null]
 		.filter(Boolean)
-		.join('\n\t');
+		.join(' ');
 
 	const previewCode = `
-import { Select } from '@/artiux/components/select';
-import { useForm } from 'react-hook-form';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/artiux/components/select';
+import { Controller, useForm } from 'react-hook-form';
 
+// Controlado
+const [value, setValue] = useState('');
+
+<Select value={value} onValueChange={setValue}>
+	<SelectTrigger${triggerProps ? ' ' + triggerProps : ''}>
+		<SelectValue placeholder='Selecionar' />
+	</SelectTrigger>
+	<SelectContent title='Status'${showDescription ? ` description='Selecione o status'` : ''}>
+		<SelectGroup>
+			<SelectLabel>Situação</SelectLabel>
+			<SelectItem value='ativo'>Ativo</SelectItem>
+			<SelectItem value='inativo'>Inativo</SelectItem>
+		</SelectGroup>
+	</SelectContent>
+</Select>
+
+// Com react-hook-form
 const { control } = useForm({ defaultValues: { status: '' } });
 
-const options = [
-	{ label: 'Ativo', value: 'ativo' },
-	{ label: 'Inativo', value: 'inativo' },
-];
-
-<Select
-	${props}
+<Controller
+	name='status'
 	control={control}
-	content={() => <p>O status define a situação do registro</p>}
-	footerClassname='flex flex-wrap flex-row'
+	render={({ field }) => (
+		<Select value={field.value} onValueChange={field.onChange}>
+			<SelectTrigger>
+				<SelectValue placeholder='Selecionar' />
+			</SelectTrigger>
+			<SelectContent>
+				<SelectItem value='ativo'>Ativo</SelectItem>
+				<SelectItem value='inativo'>Inativo</SelectItem>
+			</SelectContent>
+		</Select>
+	)}
 />
 `;
 
@@ -87,7 +96,8 @@ const options = [
 				<div>
 					<h1 className='mt-20 text-5xl font-bold'>Select</h1>
 					<p className='text-muted-foreground mt-4 block text-xl'>
-						Um seletor de opções responsivo: drawer no mobile e dropdown (Radix Select) no desktop, com suporte a ícone e descrição
+						Um seletor de opções responsivo: drawer no mobile e dropdown (Radix Select) no desktop, com API composta e suporte a ícone e
+						descrição
 					</p>
 				</div>
 
@@ -95,31 +105,48 @@ const options = [
 					<PreviewCode code={previewCode}>
 						<div className='flex w-full max-w-xs flex-col gap-6'>
 							<div>
-								<span className='text-muted-foreground mb-1 block text-sm'>Padrão</span>
-								<Select
+								<span className='text-muted-foreground mb-1 block text-sm'>Padrão (com react-hook-form)</span>
+								<Controller
 									name='status'
 									control={statusControl}
-									options={statusOptions}
-									title='Status'
-									description={showDescription ? 'Selecione o status' : undefined}
-									placeholder='Selecionar'
-									size={size}
-									ornament={ornament === 'none' ? undefined : ornament}
-									content={() => <p className='text-muted-foreground text-sm'>O status define a situação do registro</p>}
+									render={({ field }) => (
+										<Select value={field.value} onValueChange={field.onChange}>
+											<SelectTrigger size={size} ornament={ornament === 'none' ? undefined : ornament}>
+												<SelectValue placeholder='Selecionar' />
+											</SelectTrigger>
+											<SelectContent
+												title='Status'
+												description={showDescription ? 'Selecione o status' : undefined}
+												content={() => <p className='text-muted-foreground text-sm'>O status define a situação do registro</p>}
+											>
+												<SelectGroup>
+													<SelectLabel>Situação</SelectLabel>
+													{statusOptions.map((option) => (
+														<SelectItem key={option.value} value={option.value}>
+															{option.label}
+														</SelectItem>
+													))}
+												</SelectGroup>
+											</SelectContent>
+										</Select>
+									)}
 								/>
 							</div>
 
 							<div>
-								<span className='text-muted-foreground mb-1 block text-sm'>Com ícone (ornament)</span>
-								<Select
-									name='city'
-									control={cityControl}
-									options={cityOptions}
-									title='Cidade'
-									placeholder='Selecionar cidade'
-									ornament='globe'
-									size='sm'
-								/>
+								<span className='text-muted-foreground mb-1 block text-sm'>Controlado, com ícone (ornament)</span>
+								<Select value={city} onValueChange={setCity}>
+									<SelectTrigger size='sm' ornament='globe'>
+										<SelectValue placeholder='Selecionar cidade' />
+									</SelectTrigger>
+									<SelectContent title='Cidade'>
+										{cityOptions.map((option) => (
+											<SelectItem key={option.value} value={option.value}>
+												{option.label}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
 							</div>
 						</div>
 					</PreviewCode>
@@ -141,7 +168,7 @@ const options = [
 					<h3 className='text-2xl font-bold'>Instalação:</h3>
 					<div className='mt-4 place-content-start'>
 						<CopyCode
-							installs='yarn add class-variance-authority motion react-hook-form'
+							installs='yarn add class-variance-authority motion radix-ui'
 							code={componentCode}
 							fileName='artiux/components/select/index.tsx'
 						/>
@@ -155,184 +182,47 @@ const options = [
 }
 
 const propRows = [
-	{ property: 'name', type: 'Path<TFieldValues>', description: 'Nome do campo controlado pelo react-hook-form.' },
-	{ property: 'control', type: 'Control<TFieldValues>', description: 'Objeto de controle do formulário (react-hook-form).' },
-	{ property: 'options', type: '{ label: string; value: string | number }[]', description: 'Opções exibidas no drawer.' },
-	{ property: 'placeholder', type: 'string', default: "'Selecionar'", description: 'Texto exibido quando nenhum valor está selecionado.' },
-	{ property: 'title', type: 'string', description: 'Título exibido no cabeçalho do drawer.' },
-	{ property: 'description', type: 'string', description: 'Descrição exibida abaixo do título no drawer.' },
-	{ property: 'ornament', type: 'IconName', description: 'Ícone exibido dentro do gatilho de seleção.' },
-	{ property: 'size', type: "'sm' | 'lg'", default: "'lg'", description: 'Tamanho do gatilho de seleção.' },
+	{ property: 'Select · value', type: 'string', description: 'Valor selecionado (modo controlado).' },
+	{ property: 'Select · defaultValue', type: 'string', description: 'Valor inicial (modo não controlado).' },
+	{ property: 'Select · onValueChange', type: '(value: string) => void', description: 'Chamado quando o valor muda.' },
+	{ property: 'Select · open', type: 'boolean', description: 'Estado de abertura (modo controlado).' },
+	{ property: 'Select · defaultOpen', type: 'boolean', default: 'false', description: 'Estado de abertura inicial.' },
+	{ property: 'Select · onOpenChange', type: '(open: boolean) => void', description: 'Chamado quando a abertura muda.' },
 	{
-		property: 'typography',
+		property: 'Select · typography',
 		type: "VariantProps<typeof textVariants>['typography']",
 		default: "'caption'",
-		description: 'Variante tipográfica do texto do gatilho.',
+		description: 'Variante tipográfica do gatilho e das opções.',
 	},
-	{ property: 'footerClassname', type: 'string', description: 'Classes aplicadas ao rodapé do drawer com os botões de opção.' },
-	{ property: 'drawerProps', type: 'DrawerProps', description: 'Props repassadas diretamente para o componente Drawer.' },
-	{ property: 'buttonsProps', type: 'ButtonProps', description: 'Props repassadas para os botões de opção do drawer.' },
-	{ property: 'content', type: '(ctx) => React.ReactNode', description: 'Conteúdo customizado renderizado dentro do drawer.' },
+	{ property: 'SelectTrigger · size', type: "'sm' | 'lg'", default: "'lg'", description: 'Tamanho do gatilho de seleção.' },
+	{ property: 'SelectTrigger · ornament', type: 'IconName', description: 'Ícone exibido dentro do gatilho de seleção.' },
+	{
+		property: 'SelectValue · placeholder',
+		type: 'string',
+		default: "'Selecionar'",
+		description: 'Texto exibido quando nenhum valor está selecionado.',
+	},
+	{ property: 'SelectContent · title', type: 'string', description: 'Título exibido no cabeçalho do drawer (mobile).' },
+	{ property: 'SelectContent · description', type: 'string', description: 'Descrição exibida abaixo do título no drawer (mobile).' },
+	{ property: 'SelectContent · footerClassname', type: 'string', description: 'Classes aplicadas ao rodapé do drawer (mobile).' },
+	{ property: 'SelectContent · drawerProps', type: 'DrawerProps', description: 'Props repassadas ao componente Drawer (mobile).' },
+	{
+		property: 'SelectContent · buttonsProps',
+		type: 'ButtonProps',
+		description: 'Props repassadas aos botões de opção do drawer (mobile).',
+	},
+	{
+		property: 'SelectContent · content',
+		type: '(ctx) => React.ReactNode',
+		description: 'Conteúdo customizado renderizado dentro do drawer (mobile).',
+	},
+	{ property: 'SelectGroup', type: 'children', description: 'Agrupa opções.' },
+	{ property: 'SelectLabel', type: 'children', description: 'Rótulo de um grupo de opções.' },
+	{ property: 'SelectItem · value', type: 'string | number', description: 'Valor da opção; o conteúdo é o rótulo exibido.' },
+	{ property: 'SelectItem · disabled', type: 'boolean', description: 'Desabilita a opção.' },
 ];
 
 const componentCode = `
-'use client';
-
-import { cn } from '@/lib/utils';
-import { VariantProps } from 'class-variance-authority';
-import { AnimatePresence, motion } from 'motion/react';
-import * as React from 'react';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
-
-import { Button, ButtonProps } from '@/artiux/components/button';
-import { ButtonGroup } from '@/artiux/components/buttonGroup';
-import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerProps, DrawerTitle } from '@/artiux/components/drawer';
-import { Icon, IconName } from '@/artiux/components/icons';
-import { RippleContainer } from '@/artiux/components/rippleContainer';
-import { textVariants } from '@/artiux/components/text';
-import { textFieldVariants } from '@/artiux/components/textField';
-
-// 1. Adicionado Generic TFieldValues para inferir as chaves do formulário
-export interface SelectProps<TFieldValues extends FieldValues> {
-	footerClassname?: string;
-	name: Path<TFieldValues>; // name é validado contra o schema
-	options?: SelectItemProps[];
-	control: Control<TFieldValues>;
-	placeholder?: string;
-	title?: string;
-	description?: string;
-	ornament?: IconName;
-	size?: 'sm' | 'lg';
-	typography?: VariantProps<typeof textVariants>['typography'];
-	drawerProps?: DrawerProps;
-	buttonsProps?: ButtonProps;
-	content?: (ctx: {
-		value: string;
-		tempValue: string | null;
-		setTempValue: (v: string) => void;
-		confirm: () => void;
-		close: () => void;
-	}) => React.ReactNode;
-}
-
-export interface SelectItemProps {
-	label: string;
-	value: string | number;
-}
-
-// 2. Transformado em Generic Function
-export function Select<TFieldValues extends FieldValues>({
-	name,
-	options,
-	control,
-	placeholder = 'Selecionar',
-	title,
-	description,
-	ornament,
-	size = 'lg',
-	typography = 'caption',
-	footerClassname,
-	drawerProps,
-	buttonsProps,
-	content,
-}: SelectProps<TFieldValues>) {
-	const [open, setOpen] = React.useState(false);
-	const [tempValue, setTempValue] = React.useState<string | null>(null);
-
-	return (
-		<Controller
-			name={name}
-			control={control}
-			render={({ field }) => {
-				const { value, onChange } = field;
-
-				async function handleSelect(val: string | number) {
-					setOpen(false);
-					onChange(val);
-				}
-
-				return (
-					<>
-						{/* Trigger */}
-						<RippleContainer>
-							<button
-								type='button'
-								onClick={() => setOpen(true)}
-								className={cn(
-									textFieldVariants({ size }),
-									textVariants({ typography }),
-									'text-primary relative flex w-full items-center justify-between overflow-hidden'
-								)}
-							>
-								<AnimatePresence mode='wait'>
-									<motion.div
-										className='flex gap-2'
-										key={value || 'placeholder'}
-										initial={{ translateY: '150%', opacity: 0 }}
-										animate={{ translateY: 0, opacity: 1 }}
-										exit={{ translateY: '-150%', opacity: 0 }}
-										transition={{ duration: 0.2, ease: 'easeInOut', type: 'spring' }}
-									>
-										{ornament && (
-											<span className='flex items-center'>
-												<Icon icon={ornament} className={cn('text-emphasis-mid', size === 'sm' ? 'size-4' : 'size-5')} />
-											</span>
-										)}
-
-										{(options ? options.find((opt) => opt.value === value)?.label : value) || placeholder}
-									</motion.div>
-								</AnimatePresence>
-
-								<Icon icon='chevron-down' className={cn('text-primary', size === 'sm' ? 'size-4' : 'size-5')} />
-							</button>
-						</RippleContainer>
-
-						{/* Drawer */}
-						<Drawer {...drawerProps} open={open} onOpenChange={setOpen}>
-							<DrawerContent>
-								<DrawerTitle className='sr-only'>Escolha uma opção</DrawerTitle>
-								{(title || description) && (
-									<DrawerHeader>
-										{title && <DrawerTitle>{title}</DrawerTitle>}
-										{description && <DrawerDescription>{description}</DrawerDescription>}
-									</DrawerHeader>
-								)}
-
-								{content?.({
-									value,
-									tempValue,
-									setTempValue,
-									confirm: () => {
-										if (tempValue !== null) {
-											onChange(tempValue);
-										}
-										setOpen(false);
-									},
-									close: () => setOpen(false),
-								})}
-
-								{options && (
-									<DrawerFooter className={cn(footerClassname)}>
-										<ButtonGroup orientation={'vertical'}>
-											{options.map((option) => (
-												<Button
-													{...buttonsProps}
-													key={option.label}
-													variant={buttonsProps?.variant || 'secondary'}
-													onClick={() => handleSelect(option.value)}
-												>
-													{option.label}
-												</Button>
-											))}
-										</ButtonGroup>
-									</DrawerFooter>
-								)}
-							</DrawerContent>
-						</Drawer>
-					</>
-				);
-			}}
-		/>
-	);
-}
+// O código-fonte completo do componente está em artiux/components/select/index.tsx
+// Partes exportadas: Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem
 `;

@@ -2,7 +2,7 @@
 
 import useSnap from '@/hook/useSnap';
 import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import ret from '@/assets/brand/retangle.svg';
 
@@ -14,7 +14,7 @@ import { IconButton } from '@/artiux/components/iconButton';
 import { InputNumber } from '@/artiux/components/inputNumber';
 import { MultiSelect } from '@/artiux/components/multiSelect';
 import { RadioGroup, RadioGroupItem } from '@/artiux/components/radioGroup';
-import { Select } from '@/artiux/components/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/artiux/components/select';
 import { Text } from '@/artiux/components/text';
 import { useIsMobile } from '@/artiux/hooks/use-mobile';
 import CopyCode from '@/components/copyCode/copyCode';
@@ -149,7 +149,24 @@ export default function HomePage() {
 										<CardDescription>Seletor em drawer</CardDescription>
 									</CardHeader>
 									<CardContent>
-										<Select name='status' control={statusControl} options={statusOptions} placeholder='Selecionar status' />
+										<Controller
+											name='status'
+											control={statusControl}
+											render={({ field }) => (
+												<Select value={field.value} onValueChange={field.onChange}>
+													<SelectTrigger>
+														<SelectValue placeholder='Selecionar status' />
+													</SelectTrigger>
+													<SelectContent>
+														{statusOptions.map((option) => (
+															<SelectItem key={option.value} value={option.value}>
+																{option.label}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
+											)}
+										/>
 									</CardContent>
 								</Card>
 
